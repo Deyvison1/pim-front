@@ -10,7 +10,7 @@ import { FormUtil } from 'src/app/utils/form.utils';
   styleUrls: ['./venda.component.scss']
 })
 export class VendaComponent implements OnInit {
-  displayedColumns = ['statusVenda', 'tipoPagamento', 'valor', 'cliente', 'products', 'acoes'];
+  displayedColumns = ['statusVenda', 'tipoPagamento', 'valor', 'cliente', 'products', 'quantidade', 'acoes'];
   statusVendaList: any[] = [];
   tipoPagamentoList: any[] = [];
   statusVendaSelected = '';
