@@ -1,0 +1,36 @@
+<div class="">
+    <div class="">
+        <strong>Nome</strong>: {{ data.nome }}
+    </div>
+    <div class="">
+        <strong>Quantidade</strong>: {{ data.quantidade }}
+        <input [hidden]="data.quantidade === 1" type="number" [(ngModel)]="quantidade" placeholder="Selecione a quantidade">
+    </div>
+    <div class="">
+       <strong>Valor</strong>: {{ data.valor | currency }}
+    </div>
+    <div class="">
+        <strong>Fabricante</strong>: {{ data.fabricante }}
+    </div>
+
+    <div>
+        <label for=""><strong>Nome do cliente</strong></label>
+        <select #cliente (change)="setCliente(cliente.value)">
+            <option *ngFor="let item of clientes" [value]="item.id">
+                {{ item.nome }}
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <label for=""><strong>Forma de pagamento</strong></label>
+        <select #tipoPagamentoHtml (change)="setTipoPagamento(tipoPagamentoHtml.value)">
+            <option *ngFor="let item of tipoPagamento" [value]="item">
+                {{ item }}
+            </option>
+        </select>
+    </div>
+
+
+    <button class="btn btn-success" (click)="vender()">Confirmar venda</button>
+</div>

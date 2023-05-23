@@ -1,0 +1,127 @@
+<div>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-3">
+        <input type="text" formControlName="nome" placeholder="Nome" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <input
+          type="text"
+          formControlName="fabricante"
+          placeholder="Fabricante"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col align">
+        <input type="" formControlName="quantidade" placeholder="Quantidade" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col align">
+        <input type="number" formControlName="valor" placeholder="Valor" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col align" *ngIf="list.length">
+        <select #selectElem formControlName="category">
+          <option *ngFor="let item of list" [ngValue]="item">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div *ngIf="!list.length">
+      <p>
+        Nenhuma categoria salva no banco.
+        <strong>Para ter um produto e necessario ter uma categoria</strong>
+      </p>
+    </div>
+
+    <button class="align" mat-raised-button color="primary" (click)="save()">
+      Salvar
+    </button>
+  </form>
+</div>
+
+<div>
+  <div class="row align">
+    <div class="col">
+      <input
+        class="align-lateral"
+        type="text"
+        [(ngModel)]="paramsFilter.nomeProduto"
+        placeholder="Pesquisar por nome"
+      />
+      <input
+        class="align-lateral"
+        type="text"
+        [(ngModel)]="paramsFilter.nomeCategoria"
+        placeholder="Pesquisar por categoria"
+      />
+      <button
+        class="align"
+        mat-raised-button
+        color="primary"
+        (click)="searchProduto()"
+      >
+        Pesquisar
+      </button>
+    </div>
+  </div>
+  <div class="align">
+    <table mat-table [dataSource]="produtosFiltrado" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="fabricante">
+        <th mat-header-cell *matHeaderCellDef>Fabricante</th>
+        <td mat-cell *matCellDef="let element">{{ element.fabricante }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef>Valor</th>
+        <td mat-cell *matCellDef="let element">{{ element.valor }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="quantidade">
+        <th mat-header-cell *matHeaderCellDef>Quantidade</th>
+        <td mat-cell *matCellDef="let element">{{ element.quantidade }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let element">{{ element.category.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes" class="btn-group">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-success" (click)="openDialog(element)" *ngIf="element.quantidade > 0">
+            Vender
+          </button>
+          <button class="btn btn-danger" (click)="remove(element.id)">
+            Excluir
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

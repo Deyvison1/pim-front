@@ -1,0 +1,81 @@
+<div>
+  <div class="row align">
+    <div class="col">
+      <select #statusVenda (change)="setStatusVenda(statusVenda.value)">
+        <option *ngFor="let item of statusVendaList">{{item.statusVenda}}</option>
+      </select>
+
+      <select #tipoPagamento (change)="setTipoPagamento(tipoPagamento.value)">
+        <option *ngFor="let item of tipoPagamentoList" >{{item.tipoPagamento}}</option>
+      </select>
+      
+      <button style="margin-left: 8px;"
+        class="align"
+        mat-raised-button
+        color="primary"
+        (click)="searchVenda()"
+      >
+        Pesquisar
+      </button>
+    </div>
+  </div>
+  <div class="align">
+    <table mat-table [dataSource]="vendasFiltradas" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="statusVenda">
+        <th mat-header-cell *matHeaderCellDef>Status venda</th>
+        <td mat-cell *matCellDef="let element">{{ element.statusVenda }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="tipoPagamento">
+        <th mat-header-cell *matHeaderCellDef>Tipo de pagamento</th>
+        <td mat-cell *matCellDef="let element">{{ element.tipoPagamento }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef>Valor</th>
+        <td mat-cell *matCellDef="let element">{{ element.valor }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef>Cliente</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.cliente.nome }}
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="products">
+        <th mat-header-cell *matHeaderCellDef>Produtos</th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngFor="let item of element.products">{{ item.nome }}</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes" class="btn-group">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-success" *ngIf="element.statusVenda === 'ANDAMENTO'" (click)="finalizar(element.id)">
+            Finalizar
+          </button>
+          <button
+            class="btn btn-warning"
+            *ngIf="element.statusVenda === 'ANDAMENTO'"
+            (click)="cancelarVenda(element.id)"
+          >
+            Cancelar
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

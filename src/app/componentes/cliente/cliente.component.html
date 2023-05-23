@@ -1,0 +1,109 @@
+<div>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col align">
+        <input type="text" formControlName="rg" placeholder="RG" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col align">
+        <input type="text" formControlName="cpf" placeholder="CPF" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col align">
+        <input type="text" formControlName="nome" placeholder="Nome" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col align">
+        <input type="text" formControlName="telefone" placeholder="Telefone" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col align">
+        <input type="email" formControlName="email" placeholder="email" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col align">
+        <input
+          type="email"
+          placeholder="cep"
+          [(ngModel)]="cep"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+    </div>
+    <button class="align" mat-raised-button color="primary" (click)="save()">
+      Salvar
+    </button>
+  </form>
+</div>
+
+<div>
+  <div class="align">
+    <table mat-table [dataSource]="clientes" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dataCadastro">
+        <th mat-header-cell *matHeaderCellDef>Data cadastro</th>
+        <td mat-cell *matCellDef="let element">{{ element.dataCadastro }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="rg">
+        <th mat-header-cell *matHeaderCellDef>RG</th>
+        <td mat-cell *matCellDef="let element">{{ element.rg }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="cpf">
+        <th mat-header-cell *matHeaderCellDef>CPF</th>
+        <td mat-cell *matCellDef="let element">{{ element.cpf }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="telefone">
+        <th mat-header-cell *matHeaderCellDef>Telefone</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.telefone }}
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="endereco">
+        <th mat-header-cell *matHeaderCellDef>Endereco</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.endereco.cep }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-danger" (click)="deletar(element.id)">
+            Excluir
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

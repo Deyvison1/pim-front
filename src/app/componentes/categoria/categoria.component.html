@@ -1,0 +1,40 @@
+<div>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-3">
+        <input type="text" formControlName="name" placeholder="Nome" />
+      </div>
+    </div>
+
+    <button class="align" mat-raised-button color="primary" (click)="save()">
+      Salvar
+    </button>
+  </form>
+</div>
+
+<div>
+  <div class="align" style="width: 200px">
+    <table mat-table [dataSource]="categorias" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-danger" (click)="remove(element.id)">
+            Excluir
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

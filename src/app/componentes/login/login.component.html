@@ -1,0 +1,32 @@
+<div>
+  <form [formGroup]="form">
+    <div class="row">
+      <input
+        type="text"
+        id="login"
+        name="login"
+        class="form-control"
+        placeholder="Login"
+        formControlName="login"
+      />
+    </div>
+    <div class="row">
+      <input
+        type="password"
+        type="text"
+        id="senha"
+        name="senha"
+        class="form-control"
+        placeholder="Senha"
+        formControlName="senha"
+      />
+    </div>
+    <div class="col" *ngIf="!isLogin">
+      <select name="admin" class="form-control" formControlName="admin">
+        <option *ngFor="let item of list" [value]="item">{{ item }}</option>
+      </select>
+    </div>
+    <button *ngIf="isLogin" class="btn btn-warning" (click)="isLogin = false">Cadastrar usuario</button>
+    <button (click)="loginOrCadastrar()" mat-raised-button color="primary">{{(isLogin)? 'Entrar' : 'Cadastrar'}}</button>
+  </form>
+</div>
