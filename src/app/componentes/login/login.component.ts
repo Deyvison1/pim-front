@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  list = ['','ADMIN', 'ESTOQUISTA'];
+  list = ['','GERENTE', 'ESTOQUISTA'];
   isLogin: boolean = true;
 
   constructor(

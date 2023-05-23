@@ -114,7 +114,7 @@
           <button class="btn btn-success" (click)="openDialog(element)" *ngIf="element.quantidade > 0">
             Vender
           </button>
-          <button class="btn btn-danger" (click)="remove(element.id)">
+          <button *ngIf="element.quantidade > 0" class="btn btn-danger" (click)="remove(element.id)">
             Excluir
           </button>
         </td>
