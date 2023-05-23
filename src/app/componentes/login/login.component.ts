@@ -50,7 +50,10 @@ export class LoginComponent implements OnInit {
         next: () => {
           this.form.reset();
           this.isLogin = true;
-        }, complete: () => {}, error: () => {}
+          this.snackMessage.open('Sucesso no cadastro', 'OK');
+        }, complete: () => {}, error: () => {
+          this.snackMessage.open('Error no cadastro', 'OK');
+        }
       }
     );
   }

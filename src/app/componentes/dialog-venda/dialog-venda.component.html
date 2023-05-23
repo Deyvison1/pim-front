@@ -1,4 +1,4 @@
-<div class="">
+<div class="p-2">
     <div class="">
         <strong>Nome</strong>: {{ data.nome }}
     </div>
@@ -13,7 +13,7 @@
         <strong>Fabricante</strong>: {{ data.fabricante }}
     </div>
 
-    <div>
+    <div *ngIf="clientes.length > 0">
         <label for=""><strong>Nome do cliente</strong></label>
         <select #cliente (change)="setCliente(cliente.value)">
             <option *ngFor="let item of clientes" [value]="item.id">
@@ -22,8 +22,14 @@
         </select>
     </div>
 
+    <div *ngIf="clientes.length === 0">
+        <strong>
+            Para realizar uma venda e necessario ter um cliente cadastrado.
+        </strong>
+    </div>
+
     <div>
-        <label for=""><strong>Forma de pagamento</strong></label>
+        <label for=""><strong >Forma de pagamento</strong></label>
         <select #tipoPagamentoHtml (change)="setTipoPagamento(tipoPagamentoHtml.value)">
             <option *ngFor="let item of tipoPagamento" [value]="item">
                 {{ item }}
@@ -32,5 +38,5 @@
     </div>
 
 
-    <button class="btn btn-success" (click)="vender()">Confirmar venda</button>
+    <button class="btn btn-success mt-2" [disabled]="clientes.length === 0" (click)="vender()">Confirmar venda</button>
 </div>

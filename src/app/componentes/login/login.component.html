@@ -1,4 +1,4 @@
-<div>
+<div class="d-flex justify-content-center margin-top">
   <form [formGroup]="form">
     <div class="row">
       <input
@@ -10,10 +10,9 @@
         formControlName="login"
       />
     </div>
-    <div class="row">
+    <div class="row mt-1">
       <input
         type="password"
-        type="text"
         id="senha"
         name="senha"
         class="form-control"
@@ -26,7 +25,10 @@
         <option *ngFor="let item of list" [value]="item">{{ item }}</option>
       </select>
     </div>
-    <button *ngIf="isLogin" class="btn btn-warning" (click)="isLogin = false">Cadastrar usuario</button>
-    <button (click)="loginOrCadastrar()" mat-raised-button color="primary">{{(isLogin)? 'Entrar' : 'Cadastrar'}}</button>
-  </form>
+    <div class="row btn-group mt-2">
+      <button button (click)="loginOrCadastrar()" mat-raised-button color="primary">{{(isLogin)? 'Entrar' : 'Cadastrar'}}</button>
+      <button *ngIf="isLogin" class="btn btn-warning btn-sm mt-1" (click)="isLogin = false">Cadastrar usuario</button>
+  
+    </div>
+    </form>
 </div>

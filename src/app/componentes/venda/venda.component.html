@@ -41,7 +41,7 @@
       <ng-container matColumnDef="quantidade">
         <th mat-header-cell *matHeaderCellDef>Quantidade</th>
         <td mat-cell *matCellDef="let element">
-          <span *ngFor="let item of element.products">{{ item.quantidade }}</span>
+          {{ element.quantidade }}
         </td>
       </ng-container>
 

@@ -46,7 +46,7 @@ export class DialogVendaComponent implements OnInit {
 
   vender() {
     const products: Produto[] = [];
-    this.data.quantidade = this.quantidade;
+    this.data.quantidade = (this.quantidade)? this.quantidade : this.data.quantidade;
     products.push(this.data)
     const cliente = (this.clientes.length === 1)? this.clientes[0].id : this.selectedCliente;
     const formaPagamento = (this.selectedCliente)? this.selectedCliente : this.tipoPagamento[0];
@@ -60,7 +60,7 @@ export class DialogVendaComponent implements OnInit {
     this.serviceVenda.add(venda).subscribe(
       {
         next: (resp) => {
-          this.snackMessage.open(`Successo na venda do produto ${this.data.nome} no valor de ${this.data.valor} e quantidade de ${this.data.quantidade}`, 'OK')
+          this.snackMessage.open(`Suceso na venda do produto ${this.data.nome} no valor de ${this.data.valor} e quantidade de ${this.data.quantidade}`, 'OK')
           this.dialogRef.close();
         }, complete: () => {}, error: () => {
           this.snackMessage.open(`Error inesperado`, 'OK')

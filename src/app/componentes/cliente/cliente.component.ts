@@ -60,10 +60,10 @@ export class ClienteComponent implements OnInit {
               this.getAll();
             },
             complete: () => {},
-            error: () => {},
+            error: () => {
+              this.snackMessage.open('Error ao buscar cep', 'OK');
+            },
           });
-        } else {
-          this.snackMessage.open('Insira um cep valido, sem - e .', 'OK');
         }
       },
       complete: () => {},
