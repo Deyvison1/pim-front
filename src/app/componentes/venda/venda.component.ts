@@ -41,13 +41,6 @@ export class VendaComponent implements OnInit {
     this.tipoPagamentoList.push({ id: 2 , tipoPagamento: 'DINHEIRO'});
     this.tipoPagamentoList.push({ id: 2 , tipoPagamento: 'CARTAO'});
   }
-  setTipoPagamento(value) {
-    this.tipoPagamentoSelected = value;
-  }
-
-  setStatusVenda(value) {
-    this.statusVendaList = value;
-  }
 
   finalizar(id: number) {
     this.service.finalizarVenda(id).subscribe({
@@ -57,21 +50,6 @@ export class VendaComponent implements OnInit {
     })
   }
 
-  searchVenda() {
-    console.log(this.tipoPagamentoSelected);
-      this.vendasFiltradas = this.vendas;
-      if (this.paramsFilter.statusVenda) {
-        this.vendasFiltradas = this.vendas.filter(
-          (x) => x.tipoPagamento === this.tipoPagamentoSelected
-        );
-      }
-  
-      if (this.paramsFilter.statusVenda) {
-        this.vendasFiltradas = this.vendas.filter(
-          (x) => x.statusVenda === this.statusVendaSelected
-        );
-      }
-  }
 
   cancelarVenda(id) {
     this.service.cancelarVenda(id).subscribe({

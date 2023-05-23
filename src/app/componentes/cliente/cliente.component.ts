@@ -51,10 +51,10 @@ export class ClienteComponent implements OnInit {
     let msg =
       'Erro ao buscar o endereco pelo cep, so pode cadastrar cliente com endereco completo';
     this.viacepService.getEnderecoPorCep(this.cep).subscribe({
-      next: (resp) => {
+      next: (resp: any) => {
         const values = this.form.value;
         values.endereco = resp;
-        if (resp) {
+        if (!resp.erro) {
           this.service.add(values).subscribe({
             next: (resp) => {
               this.getAll();
@@ -62,6 +62,8 @@ export class ClienteComponent implements OnInit {
             complete: () => {},
             error: () => {},
           });
+        } else {
+          this.snackMessage.open('Insira um cep valido, sem - e .', 'OK');
         }
       },
       complete: () => {},

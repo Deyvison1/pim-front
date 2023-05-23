@@ -1,24 +1,4 @@
 <div>
-  <div class="row align">
-    <div class="col">
-      <select #statusVenda (change)="setStatusVenda(statusVenda.value)">
-        <option *ngFor="let item of statusVendaList">{{item.statusVenda}}</option>
-      </select>
-
-      <select #tipoPagamento (change)="setTipoPagamento(tipoPagamento.value)">
-        <option *ngFor="let item of tipoPagamentoList" >{{item.tipoPagamento}}</option>
-      </select>
-      
-      <button style="margin-left: 8px;"
-        class="align"
-        mat-raised-button
-        color="primary"
-        (click)="searchVenda()"
-      >
-        Pesquisar
-      </button>
-    </div>
-  </div>
   <div class="align">
     <table mat-table [dataSource]="vendasFiltradas" class="mat-elevation-z8">
       <!--- Note that these columns can be defined in any order.

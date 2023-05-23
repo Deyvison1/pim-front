@@ -139,7 +139,10 @@ export class ProdutoComponent implements OnInit {
 
   save() {
     const produto = this.form.value;
-
+    if(!this.list.length) {
+      this.snackMessage.open('E necessario ter uma categoria para cadastrar produto');
+      return;
+    }
     this.service.add(produto).subscribe({
       next: (resp) => {
         this.getAll();
