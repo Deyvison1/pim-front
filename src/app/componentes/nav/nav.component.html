@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-light bg-light justify-content-between" *ngIf="isLogado()">
   <div class="container">
     <a routerLink="produto">Produto</a>
     <a routerLink="category">Categoria</a>

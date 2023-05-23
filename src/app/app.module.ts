@@ -17,7 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ProdutoComponent } from './componentes/produto/produto.component';
 import { ClienteComponent } from './componentes/cliente/cliente.component';
-import { AddUserComponent } from './componentes/add-user/add-user.component';
 import { CategoriaComponent } from './componentes/categoria/categoria.component';
 import { NavComponent } from './componentes/nav/nav.component';
 import { DialogVendaComponent } from './componentes/dialog-venda/dialog-venda.component';
@@ -28,7 +27,6 @@ import { VendaComponent } from './componentes/venda/venda.component';
     LoginComponent,
     ProdutoComponent,
     ClienteComponent,
-    AddUserComponent,
     CategoriaComponent,
     NavComponent,
     DialogVendaComponent,
